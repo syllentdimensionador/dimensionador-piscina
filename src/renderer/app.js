@@ -78,7 +78,7 @@
       tr('Acessórios', acess(f) + (c.acessoriosKcal ? ' · +' + fmtInt(c.acessoriosKcal) + ' kcal' : '')) +
       tr('Hidráulica', 'vazão de projeto ' + fmt1(hid.vazaoNecessaria) + ' m³/h (bomba de calor ' + fmt1(hid.vazaoBombaCalor) + ' · renovação ' + fmt1(hid.vazaoRenovacao) + ' em ' + hid.horasRecirculacao + ' h) · altura manométrica ' + hid.mca + ' mca') +
       '</table>';
-    h += '<div class="doc-foot"><span>' + esc(CFG.marca.nome) + ' · representante ' + esc(CFG.marca.fabricante) + '</span><span>Resultado preliminar, sem valor de projeto executivo ou garantia de desempenho.</span></div>';
+    h += '<div class="doc-foot"><span>' + esc(CFG.marca.nome === CFG.marca.fabricante ? CFG.marca.nome : CFG.marca.nome + ' · representante ' + CFG.marca.fabricante) + '</span><span>Resultado preliminar, sem valor de projeto executivo ou garantia de desempenho.</span></div>';
     $('page').innerHTML = h;
   }
   var resumoTexto = '';
@@ -230,7 +230,7 @@
     atual = mod;
     $('home').hidden = true; $('modBomba').hidden = mod !== 'bomba'; $('modCloro').hidden = mod !== 'cloro';
     $('btnHome').hidden = false; $('topTitulo').textContent = titulos[mod][0]; $('topSub').textContent = titulos[mod][1];
-    document.title = titulos[mod][0] + ' · ' + CFG.marca.nome;
+    document.title = titulos[mod][0] + ' · Syllent';
     if (mod === 'cloro') recalcular(); else if (window.__recalcularBomba) window.__recalcularBomba();
     try { localStorage.setItem('dim_modulo', mod); } catch (e) {}
   }
@@ -238,7 +238,7 @@
     atual = null;
     $('home').hidden = false; $('modBomba').hidden = true; $('modCloro').hidden = true; $('btnHome').hidden = true;
     $('topTitulo').textContent = 'Dimensionadores Syllent'; $('topSub').textContent = 'Piscinas · indicação preliminar';
-    document.title = 'Dimensionadores Syllent · ' + CFG.marca.nome;
+    document.title = 'Dimensionadores Syllent';
   }
   document.querySelectorAll('.home-card').forEach(function (b) { b.addEventListener('click', function () { abrir(b.dataset.mod); }); });
   $('btnHome').addEventListener('click', inicio);
@@ -315,7 +315,7 @@
       tr('Volume total', fmtInt(r.volumeLitros) + ' litros' + (f.modoVolume === 'medidas' ? ' (' + f.principal.comprimento + ' × ' + f.principal.largura + ' × ' + f.principal.profundidade + ' m' + (f.temPrainha ? ' + prainha' : '') + ')' : '')) +
       tr('Condição', (f.aquecida === 'sim' ? 'aquecida' : 'não aquecida') + ' · ' + f.tipo + ' · uso ' + (CFG.cloro.usos[f.uso] || f.uso).toLowerCase()) +
       tr('Filtração', r.horas + ' h/dia') + '</table>';
-    h += '<div class="doc-foot"><span>' + esc(CFG.marca.nome) + ' · representante ' + esc(CFG.marca.fabricante) + '</span><span>Resultado preliminar, sem valor de projeto executivo ou garantia de desempenho.</span></div>';
+    h += '<div class="doc-foot"><span>' + esc(CFG.marca.nome === CFG.marca.fabricante ? CFG.marca.nome : CFG.marca.nome + ' · representante ' + CFG.marca.fabricante) + '</span><span>Resultado preliminar, sem valor de projeto executivo ou garantia de desempenho.</span></div>';
     $('c_page').innerHTML = h;
   }
   function kpi(k, v, u, c) { return '<div class="doc-kpi"><div class="k">' + k + '</div><div class="v">' + v + ' <small>' + u + '</small></div><div class="c">' + c + '</div></div>'; }

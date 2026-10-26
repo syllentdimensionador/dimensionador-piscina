@@ -1,7 +1,7 @@
 /* Configuracao: marca, fatores, catalogo, motobombas e clima. Editavel. */
 window.DIM_CONFIG = {
  "marca": {
-  "nome": "GN Representações",
+  "nome": "Syllent",
   "fabricante": "Syllent",
   "titulo": "Dimensionador de bomba de calor",
   "subtitulo": ""
